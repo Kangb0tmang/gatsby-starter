@@ -20,6 +20,18 @@ const Layout = ({ children }) => {
           title
         }
       }
+      allMarkdownRemark {
+        edges {
+          node {
+            excerpt
+            frontmatter {
+              title
+              slug
+              date(formatString: "DD MMMM YYYY")
+            }
+          }
+        }
+      }
     }
   `)
 
