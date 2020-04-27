@@ -1,6 +1,6 @@
 ---
 slug: "/second-post"
-date: "2020-04-27"
+date: "2020-04-26"
 title: "Our Second Post"
 ---
 

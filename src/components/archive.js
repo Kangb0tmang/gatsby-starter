@@ -1,29 +1,21 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
+import { useBlogPosts } from "../hooks/use-blogposts"
 
 const Archive = () => {
-  const data = useStaticQuery(graphql`
-    query BlogPostArchive {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              title
-              slug
-            }
-          }
-        }
-      }
-    }
-  `)
+  const { edges } = useBlogPosts()
 
   return (
     <>
       <aside>
         <h3>Archive</h3>
         <ul>
-          {data.allMarkdownRemark.edges.map(edge => (
-            <li>{edge.node.frontmatter.title}</li>
+          {edges.map(edge => (
+            <li key={edge.node.frontmatter.slug}>
+              <Link to={edge.node.frontmatter.slug}>
+                {edge.node.frontmatter.title}
+              </Link>
+            </li>
           ))}
         </ul>
       </aside>
