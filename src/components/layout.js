@@ -7,11 +7,19 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 import Header from "./header"
 import Archive from "./archive"
 import "./layout.css"
+
+const MainLayout = styled.main`
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  max-width: 90%;
+  margin: 0 auto;
+`
 
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata()
@@ -19,21 +27,15 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
+      <MainLayout>
+        <div>{children}</div>
         <Archive />
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      </MainLayout>
+      <footer>
+        © {new Date().getFullYear()}, Built with
+        {` `}
+        <a href="https://www.gatsbyjs.org">Gatsby</a>
+      </footer>
     </>
   )
 }
