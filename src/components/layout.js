@@ -7,7 +7,9 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+import Img from "gatsby-image"
 import styled from "styled-components"
+import { useImages } from "../hooks/use-images"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 import Header from "./header"
@@ -24,10 +26,14 @@ const MainLayout = styled.main`
 
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata()
+  const file = useImages()
+
+  console.log(file)
 
   return (
     <>
       <Header siteTitle={title} />
+      <Img fluid={file.childImageSharp.fluid} />
       <MainLayout>
         <div>{children}</div>
         <Archive />
