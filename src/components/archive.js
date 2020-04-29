@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import { useBlogPosts } from "../hooks/use-blogposts"
+import { useBlogPosts } from "../hooks/use-blog-posts"
 
 const Archive = () => {
   const { edges } = useBlogPosts()
