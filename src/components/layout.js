@@ -8,6 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Img from "gatsby-image"
+import { Spring } from "react-spring/renderprops"
 import styled from "styled-components"
 import { useImages } from "../hooks/use-images"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
@@ -21,19 +22,26 @@ const MainLayout = styled.main`
   grid-template-columns: 3fr 1fr;
   grid-gap: 40px;
   max-width: 90%;
-  margin: 0 auto;
+  margin: 1rem auto;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const { title } = useSiteMetadata()
   const file = useImages()
-
-  console.log(file)
 
   return (
     <>
       <Header siteTitle={title} />
-      <Img fluid={file.childImageSharp.fluid} />
+      <Spring
+        from={{ height: location.pathname === "/" ? 100 : 200 }}
+        to={{ height: location.pathname === "/" ? 200 : 100 }}
+      >
+        {styles => (
+          <div style={{ overflow: "hidden", ...styles }}>
+            <Img fluid={file.childImageSharp.fluid} />
+          </div>
+        )}
+      </Spring>
       <MainLayout>
         <div>{children}</div>
         <Archive />

@@ -7,16 +7,15 @@ import logo from "../images/logo.svg"
 
 const HeaderWrapper = styled.div`
   background: dodgerblue;
-  margin-bottom: 1.45rem;
+  img {
+    margin-bottom: 0;
+  }
 `
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
   max-width: 960;
   padding: 0.5rem;
-  img {
-    margin-bottom: 0;
-  }
 `
 
 const Header = ({ siteTitle }) => (
